@@ -1,6 +1,6 @@
 
 				Net::Dict
-				  v2.02
+				  v2.04
 
 This distribution contains the Net::Dict module for Perl.
 Net::Dict is a class implementing a simple client API
@@ -17,6 +17,9 @@ When you run "perl Makefile.PL" you'll be asked for the hostname
 and port for the DICT server used when testing. If you're not
 going to run "make install", then just press return. You should
 be able to just press return on the two questions anyway.
+
+This module now supports the AUTH optional capability. To use this
+you will need the Digest::MD5 module, available from CPAN.
 
 The module is documented using pod. When you "make install", you
 will get a man-page Net::Dict. You can also generate HTML using pod2html:

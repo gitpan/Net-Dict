@@ -11,8 +11,9 @@ $^W = 1;
 my $WARNING;
 my %TESTDATA;
 my $section;
+my @caps;
 
-print "1..10\n";
+print "1..17\n";
 
 $SIG{__WARN__} = sub { $WARNING = join('', @_); };
 
@@ -193,6 +194,125 @@ else
     print "not ok 10\n";
 }
 
+#-----------------------------------------------------------------------
+# METHOD: capabilities
+# call with an arg - doesn't take any, and should die
+#-----------------------------------------------------------------------
+eval { @caps = $dict->capabilities('foo'); };
+if ($@
+    && $@ =~ /takes no arguments/
+   )
+{
+    print "ok 11\n";
+}
+else
+{
+    print "not ok 11\n";
+}
+
+#-----------------------------------------------------------------------
+# METHOD: capabilities
+#-----------------------------------------------------------------------
+if ($dict->can('capabilities')
+    && eval { @caps = $dict->capabilities(); }
+    && do { $string = join(':', sort(@caps)); 1;}
+    && $string
+    && $string."\n" eq $TESTDATA{'capabilities'}
+   )
+{
+    print "ok 12\n";
+}
+else
+{
+    print "not ok 12\n";
+}
+
+#-----------------------------------------------------------------------
+# METHOD: has_capability
+# no argument passed
+#-----------------------------------------------------------------------
+if ($dict->can('has_capability')
+    && do { eval { $dict->has_capability(); }; 1;}
+    && $@
+    && $@ =~ /takes one argument/
+   )
+{
+    print "ok 13\n";
+}
+else
+{
+    print "not ok 13\n";
+}
+
+#-----------------------------------------------------------------------
+# METHOD: has_capability
+# pass two capability names - should also die()
+#-----------------------------------------------------------------------
+if ($dict->can('has_capability')
+    && do { eval { $dict->has_capability('mime', 'auth'); }; 1; }
+    && $@
+    && $@ =~ /takes one argument/
+   )
+{
+    print "ok 14\n";
+}
+else
+{
+    print "not ok 14\n";
+}
+
+#-----------------------------------------------------------------------
+# METHOD: has_capability
+#-----------------------------------------------------------------------
+if ($dict->can('has_capability')
+    && $dict->has_capability('mime')
+    && $dict->has_capability('auth')
+    && !$dict->has_capability('foobar')
+   )
+{
+    print "ok 15\n";
+}
+else
+{
+    print "not ok 15\n";
+}
+
+#-----------------------------------------------------------------------
+# METHOD: msg_id
+# with an argument - should cause it to die()
+#-----------------------------------------------------------------------
+if ($dict->can('msg_id')
+    && do { eval { $string = $dict->msg_id('dict.org'); }; 1;}
+    && $@
+    && $@ =~ /takes no arguments/
+   )
+{
+    print "ok 16\n";
+}
+else
+{
+    print "not ok 16\n";
+}
+
+#-----------------------------------------------------------------------
+# METHOD: msg_id
+# with no arguments, should get valid id back, of the form <...>
+#-----------------------------------------------------------------------
+if ($dict->can('msg_id')
+    && do { eval { $string = $dict->msg_id(); }; 1;}
+    && !$@
+    && defined($string)
+    && $string =~ /^<[^<>]+>$/
+   )
+{
+    print "ok 17\n";
+}
+else
+{
+    print "not ok 17\n";
+}
+
+
 exit 0;
 
 __DATA__
@@ -210,4 +330,6 @@ hitchcock          2619         34 kB         33 kB         85 kB
 devils              997         15 kB        161 kB        377 kB
 world95             277          5 kB        936 kB       2796 kB
 vera               8448         95 kB        144 kB        505 kB
+==== capabilities ====
+auth:mime
 ==== END ====

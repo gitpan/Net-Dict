@@ -1,7 +1,29 @@
 
 		ChangeLog for Net-Dict distribution
 
-2.01 2001-04-03 neilb
+2.04 2001-04-23 neilb
+
+	* tidied up the code for auth(), removing debugging statements, etc.
+	* added documentation for the auth() method.
+	* renamed auth.t to auth.test - don't want this run as
+	  part of "make test": it needs my local config for testing.
+	  Do something about that later.
+
+2.03 2001-04-23 neilb
+
+	* Added code which parses the welcome banner, to get msg id and
+	  optional capabilities.
+	* Added capabilities() method which returns a list of
+	  supported optional capabilities.
+	* Added has_capability() method for checking whether a
+	  capability is supported by the server.
+	* msg_id() method which returns the msg id from the server.
+	  This is used in the auth() method.
+	* Added auth() method, which uses Digest::MD5.
+	* Created a testsuite for auth - auth.t
+
+
+2.02 2001-04-03 neilb
 
 	* Oops - forgot to add documentation for the status() method.
 

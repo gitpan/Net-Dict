@@ -8,7 +8,7 @@
 # redistribute it and/or modify it under the same terms as Perl
 # itself.
 #
-# $Id: Dict.pm,v 2.2 2001/04/03 18:35:27 neilb Exp $
+# $Id: Dict.pm,v 2.4 2001/04/23 19:37:07 neilb Exp $
 #
 
 package Net::Dict;
@@ -19,7 +19,7 @@ use Net::Cmd;
 use Carp;
 
 use vars qw(@ISA $VERSION $debug);
-$VERSION = sprintf("%d.%02d", q$Revision: 2.2 $ =~ /(\d+)\.(\d+)/);
+$VERSION = sprintf("%d.%02d", q$Revision: 2.4 $ =~ /(\d+)\.(\d+)/);
 
 #-----------------------------------------------------------------------
 # Default values for arguments to new(). We also use this to
@@ -98,31 +98,13 @@ sub new
         return undef;
     }
 
-    ${*$self}{'net_dict_banner'} = $self->message;
+    # parse the initial 220 response
+    $self->_parse_banner($self->message);
 
     #-------------------------------------------------------------------
     # Send the CLIENT command which identifies the connecting client
     #-------------------------------------------------------------------
     $self->_CLIENT($argref->{Client});
-
-    #-------------------------------------------------------------------
-    # get the list of databases available and cache them
-    #-------------------------------------------------------------------
-    if ($self->_SHOW_DB)
-    {
-	my($dbNum)= ($self->message =~ /^\d{3} (\d+)/);
-	my($name, $descr);
- 	foreach (0..$dbNum-1)
-        {
-            ($name, $descr) = (split /\s/, $self->getline, 2);
-            chomp $descr;
-            ${${*$self}{'net_dict_dbs'}}{$name} = _unquote($descr);
-	}
-	# Is there a way to do it right? Reading the dot line and the
-	# status line afterwards? Maybe I should use read_until_dot?
-	$self->getline();
-	$self->getline();
-    }
 
     #-------------------------------------------------------------------
     # The default - search ALL dictionaries
@@ -137,6 +119,8 @@ sub dbs
     @_ == 1 or croak 'usage: $dict->dbs() - takes no arguments';
     my $self = shift;
 
+
+    $self->_get_database_list();
     return %{${*$self}{'net_dict_dbs'}};
 }
 
@@ -181,6 +165,7 @@ sub dbTitle
     my $dbname = shift;
 
 
+    $self->_get_database_list();
     if (exists ${${*$self}{'net_dict_dbs'}}{$dbname})
     {
         return ${${*$self}{'net_dict_dbs'}}{$dbname};
@@ -281,6 +266,37 @@ sub match
     \@matches; 
 }
 
+sub auth
+{
+    @_ == 3 or croak 'usage: $dict->auth() - takes two arguments';
+    my $self        = shift;
+    my $user        = shift;
+    my $pass_phrase = shift;
+    my $auth_string;
+    my $string;
+    my $ctx;
+
+
+    require Digest::MD5;
+    $string = $self->msg_id().$pass_phrase;
+    $auth_string = Digest::MD5::md5_hex($string);
+
+    if ($self->_AUTH($user, $auth_string))
+    {
+        #---------------------------------------------------------------
+        # clear the cache of database names
+        # next time a method needs them, this will cause us to go
+        # back to the server, and thus pick up any AUTH-restricted DBs
+        #---------------------------------------------------------------
+        delete ${*$self}{'net_dict_dbs'};
+    }
+    else
+    {
+        carp "auth() failed with error code ".$self->code() if $self->debug();
+        return;
+    }
+}
+
 sub status
 {
     @_ == 1 or croak 'usage: $dict->status() - takes no arguments';
@@ -293,6 +309,35 @@ sub status
     $message =~ s/^\d{3} //;
     return $message;
 }
+
+sub capabilities
+{
+    @_ == 1 or croak 'usage: $dict->capabilities() - takes no arguments';
+    my $self = shift;
+
+
+    return @{ ${*$self}{'net_dict_capabilities'} };
+}
+
+sub has_capability
+{
+    @_ == 2 or croak 'usage: $dict->has_capability() - takes one argument';
+    my $self = shift;
+    my $cap  = shift;
+
+
+    return grep(lc($cap) eq $_, $self->capabilities());
+}
+
+sub msg_id
+{
+    @_ == 1 or croak 'usage: $dict->msg_id() - takes no arguments';
+    my $self = shift;
+
+
+    return ${*$self}{'net_dict_msgid'};
+}
+
 
 sub _DEFINE { shift->command('DEFINE', map { '"'.$_.'"' } @_)->response() == CMD_INFO }
 sub _MATCH { shift->command('MATCH', map { '"'.$_.'"' } @_)->response() == CMD_INFO }
@@ -364,6 +409,80 @@ sub _unquote
         $string =~ s/"$//;
     }
     return $string;
+}
+
+#=======================================================================
+#
+# _parse_banner
+#
+# Parse the initial response banner the server sends when we connect.
+# Hoping for:
+#      220 blah blah <auth.mime> <msgid>
+# The <auth.mime> string gives a list of supported extensions.
+# The last bit is a msg-id, which identifies this connection,
+# and is used in authentication, for example.
+#
+#=======================================================================
+sub _parse_banner
+{
+    my $self   = shift;
+    my $banner = shift;
+    my ($code, $capstring, $msgid);
+
+
+    ${*$self}{'net_dict_banner'} = $banner;
+    ${*$self}{'net_dict_capabilities'} = [];
+    if ($banner =~ /^(\d{3}) (.*) (<[^<>]*>)?\s+(<[^<>]+>)\s*$/)
+    {
+        ${*$self}{'net_dict_msgid'} = $4;
+        ($capstring = $3) =~ s/[<>]//g;
+        if (length($capstring) > 0)
+        {
+            ${*$self}{'net_dict_capabilities'} = [split(/\./, $capstring)];
+        }
+    }
+    else
+    {
+        carp "unexpected format for welcome banner on connection:\n",
+             $banner if $self->debug;
+    }
+}
+
+#=======================================================================
+#
+# _get_database_list
+#
+# Get the list of databases on the remote server.
+# We cache them in the instance data object, so that dbTitle()
+# and databases() don't have to go to the server every time.
+#
+# We check to see whether we've already got the databases first,
+# and do nothing if so. This means that this private method
+# can just be invoked in the public methods.
+# 
+#=======================================================================
+sub _get_database_list
+{
+    my $self = shift;
+
+
+    return if exists ${*$self}{'net_dict_dbs'};
+
+    if ($self->_SHOW_DB)
+    {
+	my($dbNum)= ($self->message =~ /^\d{3} (\d+)/);
+	my($name, $descr);
+ 	foreach (0..$dbNum-1)
+        {
+            ($name, $descr) = (split /\s/, $self->getline, 2);
+            chomp $descr;
+            ${${*$self}{'net_dict_dbs'}}{$name} = _unquote($descr);
+	}
+	# Is there a way to do it right? Reading the dot line and the
+	# status line afterwards? Maybe I should use read_until_dot?
+	$self->getline();
+	$self->getline();
+    }
 }
 
 #-----------------------------------------------------------------------
@@ -606,6 +725,36 @@ This method was previously called strats();
 that name for the method is also currently supported,
 for backwards compatibility.
 
+=head2 auth ( $USER, $PASSPHRASE )
+
+Attempt to authenticate the specified user, using the scheme
+described on page 18 of RFC 2229.
+The user should be known to the server, and $PASSPHRASE
+is a shared secret known only to the server and the user.
+
+For example, if you were using dictd from dict.org,
+your configuration file might include the following:
+
+    database private {
+        data "/usr/local/dictd/db/private.dict.dz"
+        index "/usr/local/dictd/db/private.index"
+        access { user connor }
+    }
+
+    user connor "there can be only one"
+
+To be able to access this database, you'd write
+something like the following:
+
+    $dict = Net::Dict->new('dict.foobar.com');
+    $dict->auth('connor', 'there can be only one');
+
+A subsequent call to the C<databases> method would
+reveal the C<private> database now accessible.
+Not all servers support the AUTH extension;
+you can check this with the has_capability() method,
+described below.
+
 
 =head2 serverInfo
 
@@ -624,6 +773,20 @@ Returns the title string for the specified database.
 This is the same string returned by the C<dbs()> method
 for all databases.
 
+=head2 capabilities
+
+Returns a list of the capabilities supported by the DICT server,
+as described on pages 7 and 8 of RFC 2229.
+
+=head2 has_capability ( $cap_name )
+
+Returns true (non-zero) if the DICT server supports the
+specified capability; false (zero) otherwise. Eg
+
+    if ($dict->has_capability('auth')) {
+        $dict->auth('genie', 'open sesame');
+    }
+
 =head2 status
 
 Send the STATUS command to the DICT server,
@@ -641,7 +804,6 @@ but probably won't be of interest to most users.
 
 The following DICT commands are not currently supported:
 
-    AUTH
     OPTION MIME
 
 =item *

@@ -10,3 +10,4 @@ t/connection.t
 t/database.t
 t/define.t
 t/match.t
+t/auth.test
