@@ -1,0 +1,6 @@
+README
+MANIFEST
+Makefile.PL
+ChangeLog
+lib/Net/Dict.pm
+examples/simple.pl

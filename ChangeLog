@@ -1,0 +1,18 @@
+
+		ChangeLog for Net-Dict distribution
+
+1.04
+
+	First version under maintenance of Neil Bowers
+
+	Added Makefile.PL, README, MANIFEST.
+
+	Added examples/simple.pl, based on example submitted
+	by Jose Joao Dias de Almeida <jj@di.uminho.pt>
+
+	Modified in constructor for default port number,
+	also from Jose.
+
+1.03 - 1.01
+
+	Versions released by Dmitry Rubinstein <dimrub@wisdom.weizmann.ac.il>
