@@ -14,7 +14,7 @@ use Net::Dict;
 use AppConfig::Std;
 
 use vars qw($PROGRAM $VERSION);
-$VERSION = sprintf("%d.%d", q$Revision: 1.3 $ =~ /(\d+)\.(\d+)/);
+$VERSION = sprintf("%d.%d", q$Revision: 1.1.1.1 $ =~ /(\d+)\.(\d+)/);
 
 my $warn_dialog;
 my $dict_server;
@@ -777,7 +777,7 @@ as well as B<tkdict>.
 
 =head1 VERSION
 
-$Revision: 1.3 $
+$Revision: 1.1.1.1 $
 
 =head1 AUTHOR
 

@@ -1,6 +1,11 @@
 
 		ChangeLog for Net-Dict distribution
 
+2.07 2003-05-06 neilb
+
+	* updated testsuite to refer to test.dict.org,
+	  and to reflect changes in the databases.
+
 2.06 2002-03-23 neilb
 
 	* imported into my home machine's CVS repository

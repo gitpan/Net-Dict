@@ -310,6 +310,12 @@ but probably won't be of interest to most users.
 
 =item *
 
+Need to add methods for getting lists of databases and strategies
+in the order they're returned by the remote server.
+Suggested by Aleksey Cheusov.
+
+=item *
+
 The following DICT commands are not currently supported:
 
     OPTION MIME
@@ -386,7 +392,7 @@ Neil Bowers E<lt>neil@bowers.comE<gt>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2002 Neil Bowers. All rights reserved.
+Copyright (C) 2002-2003 Neil Bowers. All rights reserved.
 
 Copyright (C) 2001 Canon Research Centre Europe, Ltd.
 

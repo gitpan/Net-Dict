@@ -245,7 +245,7 @@ else
 # METHOD: match
 # Look for words with apostrophe in them, in a specific dictionary
 #-----------------------------------------------------------------------
-eval { $defref = $dict->match("'", 're', 'world95'); };
+eval { $defref = $dict->match("d'i", 're', 'world95'); };
 if (!$@
     && defined $defref
     && do { $string = _format_matches($defref); }
@@ -282,7 +282,7 @@ else
 # Using regular expressions to find all entries in a dictionary
 # of a given length
 #-----------------------------------------------------------------------
-eval { $defref = $dict->match('^...................................$',
+eval { $defref = $dict->match('^a....................$',
                               're', 'web1913'); };
 if (!$@
     && defined $defref
@@ -293,6 +293,8 @@ if (!$@
 }
 else
 {
+    print STDERR "\nTEST 14\nexpected \"", $TESTDATA{'web1913-re-dotmatch'},
+                 "\", got \n\"$string\"\n";
     print "not ok 14\n";
 }
 
@@ -387,12 +389,14 @@ foldoc:blue wire
 world95:Cote D'ivoire
 ==== *-suffix-standard ====
 foldoc:A Tools Integration Standard
+foldoc:Advanced Encryption Standard
 foldoc:American National Standard
 foldoc:Binary Compatibility Standard
 foldoc:Data Encryption Standard
 foldoc:de facto standard
 foldoc:Digital Signature Standard
 foldoc:display standard
+foldoc:Filesystem Hierarchy Standard
 foldoc:IEEE Floating Point Standard
 foldoc:International Standard
 foldoc:Object Compatibility Standard
@@ -411,7 +415,6 @@ wn:silver standard
 wn:standard
 wn:substandard
 ==== *-soundex-foobar ====
-easton:Fever
 foldoc:feeper
 foldoc:foobar
 foldoc:FUBAR
@@ -444,25 +447,53 @@ wn:fiber
 wn:fibre
 wn:fiver
 ==== web1913-re-dotmatch ====
-web1913:a Minors Gray Friars or Franciscans
-web1913:All is grist that comes to his mill
-web1913:Amaryllis or Sprekelia formosissima
-web1913:Arithmetical complement of a number
-web1913:Carcharodon carcharias or Rondeleti
-web1913:Commission of general gaol delivery
-web1913:Hirneola Auricula-Judae or Auricula
-web1913:Incoordination of muscular movement
-web1913:Malpighian corpuscles of the spleen
-web1913:orthosilicic or normal silicic acid
-web1913:Solen or Ensatella ensis  Americana
-web1913:Sphinx or Macrosila quinquemaculata
-web1913:sulphovinic or ethyl sulphuric acid
-web1913:To change a horse or To change hand
-web1913:to one's people or to one's fathers
-web1913:To take the wind out of one's sails
-web1913:Vespertilio or Noctulina altivolans
-web1913:Vickers-Maxim automatic machine gun
-web1913:Young Women's Christian Association
+web1913:a lie or an assertion
+web1913:Abraxas grossulariata
+web1913:Acanthopis antarctica
+web1913:Accentor rubeculoides
+web1913:Acceptance of persons
+web1913:acid sodium carbonate
+web1913:Adhesive inflammation
+web1913:Adventitious membrane
+web1913:AEgeria polistiformis
+web1913:AEgopodium podagraria
+web1913:AEgopodium Podagraria
+web1913:African calabash tree
+web1913:After one's own heart
+web1913:Agapanthus umbellatus
+web1913:Agrostis Spica-ventis
+web1913:also its milky juice 
+web1913:Altitude of a pyramid
+web1913:Ambloplites rupestris
+web1913:Ambrosia artemisiaege
+web1913:Ammodytes lanceolatus
+web1913:Ammophila arundinacea
+web1913:Amphicerus bicaudatus
+web1913:Amphioxus lanceolatus
+web1913:Anacampsis sarcitella
+web1913:Anallagmatic surfaces
+web1913:Anarhynchus frontalis
+web1913:Andropogon Halepensis
+web1913:Anemopsis Californica
+web1913:Angelica archangelica
+web1913:Anisopteryx pometaria
+web1913:Anseranas semipalmata
+web1913:Anthistiria australis
+web1913:Anthoxanthum odoratum
+web1913:Anthriscus cerefolium
+web1913:Anthyllis Barba-Jovis
+web1913:Antilocapra Americana
+web1913:Antrostomus vociferus
+web1913:Aphenogaster structor
+web1913:Aphrophora interrupta
+web1913:Aplodinotus grunniens
+web1913:Arbitrary coefficient
+web1913:Argillaceous iron ore
+web1913:As good as one's word
+web1913:Asclepias Curassavica
+web1913:Asparagus officinalis
+web1913:Aspidosperma excelsum
+web1913:Atherosperma moschata
 ==== *-lev-know ====
 easton:Knop
 easton:Snow
@@ -486,6 +517,7 @@ wn:knob
 wn:knot
 wn:know
 wn:known
+wn:Knox
 wn:now
 wn:snow
 ==== END ====

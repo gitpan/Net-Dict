@@ -1,14 +1,14 @@
 #
 # Net::Dict.pm
 #
-# Copyright (C) 2001-2002 Neil Bowers <neil@bowers.com>
+# Copyright (C) 2001-2003 Neil Bowers <neil@bowers.com>
 # Copyright (c) 1998 Dmitry Rubinstein <dimrub@wisdom.weizmann.ac.il>.
 #
 # All rights reserved.  This program is free software; you can
 # redistribute it and/or modify it under the same terms as Perl
 # itself.
 #
-# $Id: Dict.pm,v 2.6 2002/03/24 00:41:55 neilb Exp $
+# $Id: Dict.pm,v 2.7 2003/05/05 23:55:14 neilb Exp $
 #
 
 package Net::Dict;
@@ -19,7 +19,7 @@ use Net::Cmd;
 use Carp;
 
 use vars qw(@ISA $VERSION $debug);
-$VERSION = sprintf("%d.%02d", q$Revision: 2.6 $ =~ /(\d+)\.(\d+)/);
+$VERSION = sprintf("%d.%02d", q$Revision: 2.7 $ =~ /(\d+)\.(\d+)/);
 
 #-----------------------------------------------------------------------
 # Default values for arguments to new(). We also use this to

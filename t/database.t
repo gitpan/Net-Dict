@@ -252,24 +252,24 @@ __DATA__
 devils:THE DEVIL'S DICTIONARY ((C)1911 Released April 15 1993)
 easton:Easton's 1897 Bible Dictionary
 elements:Elements database 20001107
-foldoc:The Free On-line Dictionary of Computing (13 Mar 01)
+foldoc:The Free On-line Dictionary of Computing (09 FEB 02)
 gazetteer:U.S. Gazetteer (1990)
 hitchcock:Hitchcock's Bible Names Dictionary (late 1800's)
-jargon:Jargon File (4.2.3, 23 NOV 2000)
-vera:V.E.R.A. -- Virtual Entity of Relevant Acronyms 13 March 2001
+jargon:Jargon File (4.3.0, 30 APR 2001)
+vera:V.E.R.A. -- Virtual Entity of Relevant Acronyms December 2001
 web1913:Webster's Revised Unabridged Dictionary (1913)
-wn:WordNet (r) 1.6
+wn:WordNet (r) 1.7
 world95:The CIA World Factbook (1995)
 ==== dbtitle-wn ====
-WordNet (r) 1.6
+WordNet (r) 1.7
 ==== dbinfo-wn ====
 00-database-info
      This file was converted from the original database on:
-                Sun Feb 15 21:09:53 1998
+                Sat Jun 23 14:21:23 2001
 
       
       The original data is available from:
-         ftp://clarity.princeton.edu/pub/wordnet/wn1.6unix.tar.gz
+         http://www.cogsci.princeton.edu/~wn/
       
       The original data was distributed with the notice shown
       below.  No additional restrictions are claimed.  Please
@@ -293,7 +293,7 @@ WordNet (r) 1.6
          modifications that you make for internal use or for
          distribution.
          
-         WordNet 1.6 Copyright 1997 by Princeton University.  All
+         WordNet 1.7 Copyright 2001 by Princeton University.  All
          rights reserved.
          
          THIS SOFTWARE AND DATABASE IS PROVIDED "AS IS" AND

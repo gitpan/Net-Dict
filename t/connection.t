@@ -148,7 +148,7 @@ my $serverinfo = $dict->serverInfo();
 if (exists $TESTDATA{serverinfo}
     && defined $serverinfo
     && do { $serverinfo =~ s/^dictd.*?\n//s}
-    && do { $serverinfo =~ s/^On miranda\.org.*?\n//s}
+    && do { $serverinfo =~ s/^On dega\.cs\.unc\.edu.*?\n//s}
     && $serverinfo eq $TESTDATA{serverinfo}
    )
 {
@@ -321,15 +321,15 @@ __DATA__
 Database      Headwords         Index          Data  Uncompressed
 elements            130          2 kB         14 kB         45 kB
 web1913          185399       3438 kB         11 MB         30 MB
-wn               121967       2427 kB       7142 kB         21 MB
+wn               136975       2763 kB       8173 kB         25 MB
 gazetteer         52994       1087 kB       1754 kB       8351 kB
-jargon             2371         42 kB        606 kB       1368 kB
-foldoc            13258        255 kB       1978 kB       4850 kB
+jargon             2373         42 kB        619 kB       1427 kB
+foldoc            13533        262 kB       2016 kB       4947 kB
 easton             3968         64 kB       1077 kB       2648 kB
 hitchcock          2619         34 kB         33 kB         85 kB
 devils              997         15 kB        161 kB        377 kB
 world95             277          5 kB        936 kB       2796 kB
-vera               8448         95 kB        144 kB        505 kB
+vera               8930        101 kB        154 kB        537 kB
 ==== capabilities ====
 auth:mime
 ==== END ====

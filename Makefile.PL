@@ -1,12 +1,12 @@
 #
 # Makefile.PL for Net-Dict
 #
-# $Id: Makefile.PL,v 1.2 2002/03/24 00:43:14 neilb Exp $
+# $Id: Makefile.PL,v 1.2 2003/05/05 23:56:17 neilb Exp $
 #
 
 use ExtUtils::MakeMaker;
 
-my $DEFAULT_HOST = 'dict.org';
+my $DEFAULT_HOST = 'test.dict.org';
 my $DEFAULT_PORT = 2628;
 
 $test_config_file = 't/test_host.cfg';
