@@ -1,6 +1,21 @@
 
 		ChangeLog for Net-Dict distribution
 
+1.07 2001-03-04 neilb
+	* Updated the one-line description in the NAME pod section.
+	  Previous one was a bit terse - that's what shows up
+	  on search.cpan.org, and similar places.
+
+1.06 2001-03-04 neilb
+	* created tkdict, first cut at a Perl/Tk DICT client.
+	  The interface is currently very DICT protocol centric.
+	* added dbTitle() method, which is used to query the title
+	  string for a specific database.
+	* the description strings returned by dbs() and strats() were
+	  quoted with double strings (if that's what the server returned).
+	  Similarly every word returned by match() was quoted.
+	  Now the quotation marks are removed.
+
 1.05
 	* added "dict", a sample client script
 	* strats() method was including a newline in the description

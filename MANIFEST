@@ -4,4 +4,5 @@ Makefile.PL
 ChangeLog
 lib/Net/Dict.pm
 dict
+tkdict
 examples/simple.pl

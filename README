@@ -1,10 +1,10 @@
 
 				Net::Dict
-				  v1.05
+				  v1.07
 
 This distribution contains the Net::Dict module for Perl.
-Net::Dict is a class implementing a simple client library
-for the Dict protocol defined in RFC2229.
+Net::Dict is a class implementing a simple client API
+for the DICT protocol defined in RFC2229.
 
 To install this module, you should just have to run the following:
 
@@ -18,18 +18,23 @@ will get a man-page Net::Dict. You can also generate HTML using pod2html:
 
 	% pod2html lib/Net/Dict.pm
 
-A basic Net::Dict client, dict, is included in this distribution.
-In addition to the documentation, the examples directory
-contains simple.pl, which illustrates very basic use of Net::Dict.
-To use this module you need the following modules:
+Three sample clients are included in this distribution.
+Any additional modules required are noted, and available from CPAN.
 
-	AppConfig::Std
-	AppConfig
+    dict
+	A basic command-line client, based on the C dict client
+	by Rik Faith.
+	Requires: AppConfig, AppConfig::Std
 
-Both of these are available from CPAN.
+    tkdict
+	A first cut at a Perl/Tk client. This is pretty rough;
+	any suggestions or patches are welcome!
+	Requires: AppConfig, AppConfig::Std, Tk, Tk::Dialog
 
-Net::Dict was written by Dmitry Rubinstein, but is now
-maintained by me.
+    examples/simple.pl
+	Illustrates basic use of Net::Dict.
+
+Net::Dict was written by Dmitry Rubinstein, but is now maintained by me.
 
 
 Neil Bowers <neilb@cre.canon.co.uk>

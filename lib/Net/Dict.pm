@@ -8,7 +8,7 @@
 # redistribute it and/or modify it under the same terms as Perl
 # itself.
 #
-# $Id: Dict.pm,v 1.5 2001/02/28 19:55:31 neilb Exp $
+# $Id: Dict.pm,v 1.7 2001/03/04 16:53:47 neilb Exp $
 #
 
 package Net::Dict;
@@ -20,7 +20,7 @@ use Net::Cmd;
 use Carp;
 use Net::Config;
 
-$VERSION = $VERSION = sprintf("%d.%02d", q$Revision: 1.5 $ =~ /(\d+)\.(\d+)/);
+$VERSION = $VERSION = sprintf("%d.%02d", q$Revision: 1.7 $ =~ /(\d+)\.(\d+)/);
 my $CLIENT_INFO = "Dict.pm version $VERSION";
 
 @ISA = qw(Net::Cmd IO::Socket::INET);
@@ -62,13 +62,14 @@ sub new
 
     ${*$obj}{'net_dict_banner'} = $obj->message;
 
-    if ($obj->_SHOW_DB) {
+    if ($obj->_SHOW_DB)
+    {
 	my($dbNum)= ($obj->message =~ /^\d{3} (\d+)/);
 	my($name, $descr);
  	foreach (0..$dbNum-1) {
             ($name, $descr) = (split /\s/, $obj->getline, 2);
             chomp $descr;
-            ${${*$obj}{'net_dict_dbs'}}{$name} = $descr;
+            ${${*$obj}{'net_dict_dbs'}}{$name} = _unquote($descr);
 	}
 	# Is there a way to do it right? Reading the dot line and the
 	# status line afterwards? Maybe I should use read_until_dot?
@@ -117,6 +118,15 @@ sub dbInfo
     @{$obj->read_until_dot()};
 }
 
+sub dbTitle
+{
+    @_ == 2 or croak 'dbTitle() method expects one argument - DB name';
+    my $self   = shift;
+    my $dbname = shift;
+
+    return ${${*$self}{'net_dict_dbs'}}{$dbname};
+}
+
 sub strats
 {
     @_ == 1 or croak 'usage: $obj->strats()';
@@ -128,7 +138,7 @@ sub strats
     {
         ($name, $desc) = (split /\s/, $_, 2);
         chomp $desc;
-        $strats{$name} = $desc;
+        $strats{$name} = _unquote($desc);
     }
     $obj->getline();
     %strats;
@@ -176,7 +186,7 @@ sub match
         foreach (@{$obj->read_until_dot}) {
             ($db, $w) = split /\s/, $_, 2;
             chomp $w;
-            push @matches, [$db, $w];
+            push @matches, [$db, _unquote($w)];
         }
         $obj->getline();
     }
@@ -234,6 +244,26 @@ sub response
     substr($code,0,1);
 }
 
+#=======================================================================
+#
+# _unquote
+#
+# Private function used to remove quotation marks from around
+# a string.
+#
+#=======================================================================
+sub _unquote
+{
+    my $string = shift;
+
+
+    if ($string =~ /^"/)
+    {
+        $string =~ s/^"//;
+        $string =~ s/"$//;
+    }
+    return $string;
+}
 
 1;
 
@@ -241,7 +271,7 @@ __END__
 
 =head1 NAME
 
-Net::Dict - Dict Client class
+Net::Dict - client API for accessing dictionary servers (RFC 2229)
 
 =head1 SYNOPSIS
 
@@ -275,8 +305,8 @@ Quotation from RFC2229:
 This is the constructor for a new Net::Dict object. C<HOST> is the
 name of the remote host on which a Dict server is running.
 
-If the C<HOST> value is an empty string, the   default   behavior   is
-to   try  dict.org, alt0.dict.org, alt1.dict.org, and alt2.dict.org,
+If the C<HOST> value is an empty string, the default behavior is
+to try dict.org, alt0.dict.org, alt1.dict.org, and alt2.dict.org,
 in that order.
 
 C<OPTIONS> are passed in a hash like fashion, using key and value pairs.
@@ -364,6 +394,12 @@ same as define(), but a
 matching using the specified strategies is performed. Return array of
 lists, consisting of dictionary - match pairs.
 
+=item dbTitle($dbname)
+
+Returns the title string for the specified dictionary.
+This is the same string returned by the C<dbs()> method
+for all databases.
+
 =back
 
 =head1 UNIMPLEMENTED
@@ -415,7 +451,7 @@ http://www.dict.org/
 
 =head1 COPYRIGHT
 
-Copyright (C) 2001 Neil Bowers. All rights reserved.
+Copyright (C) 2001 Canon Research Centre Europe, Ltd.
 
 Copyright (c) 1998 Dmitry Rubinstein. All rights reserved.
 
