@@ -14,13 +14,16 @@ use Net::Cmd;
 use Carp;
 use Net::Config;
 
-$VERSION = "0.1"; 
+$VERSION = "0.01"; 
 my $CLIENT_INFO = "Dict.pm version $VERSION";
 
-# $Header: /home/dimrub/public_html/dict/Net/RCS/Dict.pm,v 1.1 1998/10/11 15:34:57 dimrub Exp dimrub $
+# $Header: /home/dimrub/wisdom/public_html/dict/Net/RCS/Dict.pm,v 1.2 1999/10/04 11:51:02 dimrub Exp $
 
 #
 # $Log: Dict.pm,v $
+# Revision 1.2  1999/10/04 11:51:02  dimrub
+# Bug fix in 'sub define' (sent by Brian Kariger)
+#
 # Revision 1.1  1998/10/11 15:34:57  dimrub
 # Initial revision
 #
@@ -70,7 +73,6 @@ sub new
  	foreach (0..$dbNum-1) {
 		($name, $descr) = (split /\s/, $obj->getline, 2);
 		chomp $descr;
-		$descr =~ s/^"(.*)"$/\1/;
 		${${*$obj}{'net_dict_dbs'}}{$name} = $descr;
 	}
 	# Is there a way to do it right? Reading the dot line and the
@@ -143,7 +145,7 @@ sub define {
 
 		my ($defNum) = ($obj->message =~ /^\d{3} (\d+) /);
 		foreach (0..$defNum-1) {
-			my ($d) = ($obj->getline =~ /^\d{3} "\w*" (\w+) /);
+			my ($d) = ($obj->getline =~ /^\d{3} ".*" (\w+) /);
 			my ($def) = join '', @{$obj->read_until_dot};
 			push @defs, [$d, $def];
 		}
@@ -168,7 +170,6 @@ sub match {
 		foreach (@{$obj->read_until_dot}) {
 			($db, $w) = split /\s/, $_, 2;
 			chomp $w;
-			$w =~ s/^"(.*)"$/\1/o;
 			push @matches, [$db, $w];
 		}
 		$obj->getline();
@@ -366,8 +367,6 @@ http://www.cis.ohio-state.edu/htbin/rfc/rfc2229.html
 http://www.dict.org/
 
 =head1 CREDITS
-The Net::POP3 and Net::FTP modules by Graham Barr <gbarr@pobox.com>
-were used as a pattern for this one.
 
 =head1 COPYRIGHT
 
