@@ -1,6 +1,6 @@
 
 				Net::Dict
-				  v2.04
+				  v2.06
 
 This distribution contains the Net::Dict module for Perl.
 Net::Dict is a class implementing a simple client API
@@ -45,6 +45,4 @@ Any additional modules required are noted, and available from CPAN.
 Net::Dict was written by Dmitry Rubinstein, but is now maintained by me.
 
 
-Neil Bowers <neilb@cre.canon.co.uk>
-Canon Research Centre Europe
-http://www.cre.canon.co.uk/
+Neil Bowers <neil@bowers.com>

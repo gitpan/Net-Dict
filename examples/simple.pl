@@ -15,7 +15,7 @@
 #
 # This is based on an example from Jose Joao Dias de Almeida <jj@di.uminho.pt>
 #
-# $Id: simple.pl,v 1.1 2001/02/22 19:23:39 neilb Exp $
+# $Id: simple.pl,v 1.1.1.1 2001/10/24 21:19:45 neilb Exp $
 #
 
 use strict;

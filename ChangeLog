@@ -1,6 +1,11 @@
 
 		ChangeLog for Net-Dict distribution
 
+2.06 2002-03-23 neilb
+
+	* imported into my home machine's CVS repository
+	* updated email address
+
 2.05 2001-04-25 neilb
 
 	* moved the inline documentation to a separate file Dict.pod

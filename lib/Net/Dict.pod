@@ -377,14 +377,16 @@ including other libraries and clients.
 
 =head1 AUTHOR
 
-Net::Dict was written by
+The first version of Net::Dict was written by
 Dmitry Rubinstein E<lt>dimrub@wisdom.weizmann.ac.ilE<gt>,
 using Net::FTP and Net::SMTP as a pattern and a model for imitation.
 
-The module is now maintained by
-Neil Bowers E<lt>neilb@cre.canon.co.ukE<gt>
+The module was extended, and is now maintained, by
+Neil Bowers E<lt>neil@bowers.comE<gt>
 
 =head1 COPYRIGHT
+
+Copyright (C) 2002 Neil Bowers. All rights reserved.
 
 Copyright (C) 2001 Canon Research Centre Europe, Ltd.
 
