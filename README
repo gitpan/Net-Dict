@@ -1,6 +1,6 @@
 
 				Net::Dict
-				  v1.07
+				  v2.00
 
 This distribution contains the Net::Dict module for Perl.
 Net::Dict is a class implementing a simple client API
@@ -10,8 +10,13 @@ To install this module, you should just have to run the following:
 
 	% perl Makefile.PL
 	% make
-	% make test (this can be omitted, as there are no tests currently)
+	% make test
 	% make install
+
+When you run "perl Makefile.PL" you'll be asked for the hostname
+and port for the DICT server used when testing. If you're not
+going to run "make install", then just press return. You should
+be able to just press return on the two questions anyway.
 
 The module is documented using pod. When you "make install", you
 will get a man-page Net::Dict. You can also generate HTML using pod2html:

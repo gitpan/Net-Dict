@@ -1,6 +1,72 @@
 
 		ChangeLog for Net-Dict distribution
 
+2.00 2001-04-01 neilb
+
+	* up'd the major version number - this will be the first public
+	  release version since changing the API for the constructor.
+		- updated dict and tkdict to use the new method name
+
+	* Various documentation updates, including:
+		- adding more to the descriptive section of the documentation.
+		- reformatting the METHODS section
+
+	* strats() method renamed to strategies(). The old name is
+	  retained for backwards compatibility.
+
+	* Put a hack in the match.t test to supress unwanted output
+	  from _print_isa function in Net::Cmd.
+
+	* Removed the dependence on Net::Config from Makefile.PL
+
+
+1.09 2001-03-26 neilb
+
+	* Send the CLIENT command to identify us before any other command
+	  is sent.
+
+	* Don't need to "use Net::Config" now
+
+	* dbTitle() checks whether the given DB name is valid.
+	  If it isn't, and debug is set to non-zero, then we now carp.
+
+	* Fixed a bug in define() - couldn't handle multi-word entries, eg:
+		$dict->define("oboe d'amore");
+	  didn't work as it should. The private _DEFINE method now quotes
+	  all arguments before passing them on, since having everything
+	  quoted is ok by RFC 2229.
+
+	* Fixed the same bug in match() method.
+
+	* Finished first pass at testsuite for define() method.
+
+1.08 2001-03-22 neilb
+
+	* first version of testsuite - not the full set, but enough
+	  to get a few people to test and find out if it's sensible.
+	* Makefile.PL updated to get hostname and port for test server,
+	  it builds a config file in t/
+
+	* dbInfo now returns a string rather than an array of lines.
+	  This means it now matches the documentation!
+
+	* dbTitle() returns undef if you request a title of a
+	  non-existent database.
+
+ 	* Now checks for legality of arg names passed to constructor
+	* constructor requires hostname as first argument
+	* don't look for default list of hosts to try from Net::Config
+	* updated checking of arguments to constructor and error messages
+	* changed all self variables from $obj to $self
+	* improved wording of error messages when checking method arg lists
+	* private method _CLIENT now takes arg, rather than hard-coding
+	  reference to package variable $CLIENT_INFO
+	* Removed references in to the doc to ConfigFile and HTML
+	  arguments - they weren't actually supported - now mention
+	  this in the LIMITATIONS section
+	* Put an example of use of constructor with all arguments
+	  in the doc
+
 1.07 2001-03-04 neilb
 	* Updated the one-line description in the NAME pod section.
 	  Previous one was a bit terse - that's what shows up

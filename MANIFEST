@@ -6,3 +6,7 @@ lib/Net/Dict.pm
 dict
 tkdict
 examples/simple.pl
+t/connection.t
+t/database.t
+t/define.t
+t/match.t
