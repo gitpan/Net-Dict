@@ -1,6 +1,25 @@
 
 		ChangeLog for Net-Dict distribution
 
+2.01 2001-04-03 neilb
+
+	* Oops - forgot to add documentation for the status() method.
+
+2.01 2001-04-03 neilb
+
+	* Added status() method to Net::Dict - returns the string
+	  returned by the DICT server when STATUS command is sent.
+	  Couple of test cases in t/connection.t
+
+	* When using the sample dict client, if no definition was
+	  found, then it will use Levenshtein or Soundex matching
+	  to look for close words. If the server doesn't support
+	  either strategy, then it just gives a basic error message.
+
+	* Updated the testsuite - new databases on dict.org meant
+	  that certain tests failed (eg where the date is included
+	  in the title of a database).
+
 2.00 2001-04-01 neilb
 
 	* up'd the major version number - this will be the first public

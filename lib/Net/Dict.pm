@@ -8,7 +8,7 @@
 # redistribute it and/or modify it under the same terms as Perl
 # itself.
 #
-# $Id: Dict.pm,v 2.0 2001/04/01 16:22:40 neilb Exp $
+# $Id: Dict.pm,v 2.2 2001/04/03 18:35:27 neilb Exp $
 #
 
 package Net::Dict;
@@ -19,7 +19,7 @@ use Net::Cmd;
 use Carp;
 
 use vars qw(@ISA $VERSION $debug);
-$VERSION = sprintf("%d.%02d", q$Revision: 2.0 $ =~ /(\d+)\.(\d+)/);
+$VERSION = sprintf("%d.%02d", q$Revision: 2.2 $ =~ /(\d+)\.(\d+)/);
 
 #-----------------------------------------------------------------------
 # Default values for arguments to new(). We also use this to
@@ -163,9 +163,15 @@ sub dbInfo
 {
     @_ == 2 or croak 'usage: $dict->dbInfo($dbname) - one argument only';
     my $self = shift;
-    return undef unless
-        $self->_SHOW_INFO(@_);
-    return join('', @{$self->read_until_dot()});
+
+    if ($self->_SHOW_INFO(@_))
+    {
+        return join('', @{$self->read_until_dot()});
+    }
+    else
+    {
+        return undef;
+    }
 }
 
 sub dbTitle
@@ -273,6 +279,19 @@ sub match
         $self->getline();
     }
     \@matches; 
+}
+
+sub status
+{
+    @_ == 1 or croak 'usage: $dict->status() - takes no arguments';
+    my $self = shift;
+    my $message;
+
+
+    $self->_STATUS() || return 0;
+    chomp($message = $self->message);
+    $message =~ s/^\d{3} //;
+    return $message;
 }
 
 sub _DEFINE { shift->command('DEFINE', map { '"'.$_.'"' } @_)->response() == CMD_INFO }
@@ -605,6 +624,14 @@ Returns the title string for the specified database.
 This is the same string returned by the C<dbs()> method
 for all databases.
 
+=head2 status
+
+Send the STATUS command to the DICT server,
+which will return some server-specific timing
+or debugging information.
+This may be useful when debugging or tuning a DICT server,
+but probably won't be of interest to most users.
+
 
 =head1 KNOWN BUGS AND LIMITATIONS
 
@@ -616,7 +643,6 @@ The following DICT commands are not currently supported:
 
     AUTH
     OPTION MIME
-    STATUS
 
 =item *
 

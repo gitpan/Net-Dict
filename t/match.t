@@ -387,7 +387,6 @@ foldoc:blue wire
 world95:Cote D'ivoire
 ==== *-suffix-standard ====
 foldoc:A Tools Integration Standard
-foldoc:Advanced Encryption Standard
 foldoc:American National Standard
 foldoc:Binary Compatibility Standard
 foldoc:Data Encryption Standard
@@ -469,6 +468,7 @@ easton:Knop
 easton:Snow
 gazetteer:Knox
 gazetteer:Snow
+vera:NOW
 web1913:Enow
 web1913:Gnow
 web1913:Knaw

@@ -12,7 +12,7 @@ my $WARNING;
 my %TESTDATA;
 my $section;
 
-print "1..8\n";
+print "1..10\n";
 
 $SIG{__WARN__} = sub { $WARNING = join('', @_); };
 
@@ -159,6 +159,40 @@ else
     print "not ok 8\n";
 }
 
+#-----------------------------------------------------------------------
+# METHOD: status
+# call with an argument - should die since it takes no args.
+#-----------------------------------------------------------------------
+eval { $string = $dict->status('foo'); };
+if ($@
+    && $@ =~ /takes no arguments/)
+{
+    print "ok 9\n";
+}
+else
+{
+    print "not ok 9\n";
+}
+
+#-----------------------------------------------------------------------
+# METHOD: status
+# call with no args, and check that the general format of the string
+# is what we expect
+#-----------------------------------------------------------------------
+eval { $string = $dict->status(); };
+if (!$@
+    && defined $string
+    && $string
+    && $string =~ m!^status \[d/m/c.*\]$!
+   )
+{
+    print "ok 10\n";
+}
+else
+{
+    print "not ok 10\n";
+}
+
 exit 0;
 
 __DATA__
@@ -170,10 +204,10 @@ web1913          185399       3438 kB         11 MB         30 MB
 wn               121967       2427 kB       7142 kB         21 MB
 gazetteer         52994       1087 kB       1754 kB       8351 kB
 jargon             2371         42 kB        606 kB       1368 kB
-foldoc            13199        254 kB       1968 kB       4827 kB
+foldoc            13258        255 kB       1978 kB       4850 kB
 easton             3968         64 kB       1077 kB       2648 kB
 hitchcock          2619         34 kB         33 kB         85 kB
 devils              997         15 kB        161 kB        377 kB
 world95             277          5 kB        936 kB       2796 kB
-vera               8156         91 kB        138 kB        486 kB
+vera               8448         95 kB        144 kB        505 kB
 ==== END ====

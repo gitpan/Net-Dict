@@ -211,7 +211,7 @@ else
 # some verbosity from Net::Cmd when we turn on debugging.
 # This is done so that the "make test" *looks* clean as well as being clean.
 #-----------------------------------------------------------------------
-Net::Cmd::debug('Net::Dict', 0);
+Net::Dict->debug(0);
 $dict->debug(1);
 $WARNING = '';
 eval { $string = $dict->dbTitle('web1651'); };
@@ -252,11 +252,11 @@ __DATA__
 devils:THE DEVIL'S DICTIONARY ((C)1911 Released April 15 1993)
 easton:Easton's 1897 Bible Dictionary
 elements:Elements database 20001107
-foldoc:The Free On-line Dictionary of Computing (19 Jan 01)
+foldoc:The Free On-line Dictionary of Computing (13 Mar 01)
 gazetteer:U.S. Gazetteer (1990)
 hitchcock:Hitchcock's Bible Names Dictionary (late 1800's)
 jargon:Jargon File (4.2.3, 23 NOV 2000)
-vera:V.E.R.A. -- Virtual Entity of Relevant Acronyms 2 June 2000
+vera:V.E.R.A. -- Virtual Entity of Relevant Acronyms 13 March 2001
 web1913:Webster's Revised Unabridged Dictionary (1913)
 wn:WordNet (r) 1.6
 world95:The CIA World Factbook (1995)
