@@ -14,13 +14,16 @@ use Net::Cmd;
 use Carp;
 use Net::Config;
 
-$VERSION = "0.01"; 
+$VERSION = $VERSION = sprintf("%d.%02d", q$Revision: 1.3 $ =~ /(\d+)\.(\d+)/);
 my $CLIENT_INFO = "Dict.pm version $VERSION";
 
-# $Header: /home/dimrub/wisdom/public_html/dict/Net/RCS/Dict.pm,v 1.2 1999/10/04 11:51:02 dimrub Exp $
+# $Header: /home/dimrub/wisdom/public_html/dict/Net/RCS/Dict.pm,v 1.3 1999/10/10 12:05:49 dimrub Exp $
 
 #
 # $Log: Dict.pm,v $
+# Revision 1.3  1999/10/10 12:05:49  dimrub
+# Inserted the $Revision$ keyword (a waste of version number)
+#
 # Revision 1.2  1999/10/04 11:51:02  dimrub
 # Bug fix in 'sub define' (sent by Brian Kariger)
 #
