@@ -3,4 +3,5 @@ MANIFEST
 Makefile.PL
 ChangeLog
 lib/Net/Dict.pm
+dict
 examples/simple.pl

@@ -1,6 +1,6 @@
 
 				Net::Dict
-				  v1.04
+				  v1.05
 
 This distribution contains the Net::Dict module for Perl.
 Net::Dict is a class implementing a simple client library
@@ -18,10 +18,17 @@ will get a man-page Net::Dict. You can also generate HTML using pod2html:
 
 	% pod2html lib/Net/Dict.pm
 
+A basic Net::Dict client, dict, is included in this distribution.
 In addition to the documentation, the examples directory
-contains simple.pl, which illustrates basic use of Net::Dict.
+contains simple.pl, which illustrates very basic use of Net::Dict.
+To use this module you need the following modules:
 
-This module was written by Dmitry Rubinstein, but is now
+	AppConfig::Std
+	AppConfig
+
+Both of these are available from CPAN.
+
+Net::Dict was written by Dmitry Rubinstein, but is now
 maintained by me.
 
 

@@ -8,7 +8,7 @@
 # redistribute it and/or modify it under the same terms as Perl
 # itself.
 #
-# $Id: Dict.pm,v 1.4 2001/02/22 19:42:59 neilb Exp $
+# $Id: Dict.pm,v 1.5 2001/02/28 19:55:31 neilb Exp $
 #
 
 package Net::Dict;
@@ -20,7 +20,7 @@ use Net::Cmd;
 use Carp;
 use Net::Config;
 
-$VERSION = $VERSION = sprintf("%d.%02d", q$Revision: 1.4 $ =~ /(\d+)\.(\d+)/);
+$VERSION = $VERSION = sprintf("%d.%02d", q$Revision: 1.5 $ =~ /(\d+)\.(\d+)/);
 my $CLIENT_INFO = "Dict.pm version $VERSION";
 
 @ISA = qw(Net::Cmd IO::Socket::INET);
@@ -47,6 +47,8 @@ sub new
 
     return undef
 	unless defined $obj;
+
+    $CLIENT_INFO = $arg{Client} if defined $arg{Client};
 
     ${*$obj}{'net_dict_host'} = $host;
 
@@ -125,6 +127,7 @@ sub strats
     foreach (@{$obj->read_until_dot()})
     {
         ($name, $desc) = (split /\s/, $_, 2);
+        chomp $desc;
         $strats{$name} = $desc;
     }
     $obj->getline();
@@ -296,6 +299,11 @@ Give an output of 'match' and 'define' in HTML.
 
 The port number to connect to on the remote machine for the
 Dict connection (a default port number is 2628, according to RFC2229).
+
+=item B<Client>
+
+The string to send as the CLIENT identifier.
+If not set, then a default identifier for Net::Dict is sent.
 
 =item B<Timeout>
 

@@ -1,6 +1,14 @@
 
 		ChangeLog for Net-Dict distribution
 
+1.05
+	* added "dict", a sample client script
+	* strats() method was including a newline in the description
+	  of each strategy, unlike dbs(), which chomp()s the description.
+	  strats() now chomps as well!
+	* added Client option to Net::Dict, for CLIENT identifier string
+	* added AUTHOR and ABSTRACT_FROM keys to Makefile.PL
+
 1.04
 
 	First version under maintenance of Neil Bowers
