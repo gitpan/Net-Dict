@@ -1,7 +1,7 @@
 #
 # Makefile.PL for Net-Dict
 #
-# $Id: Makefile.PL,v 1.7 2001/04/01 16:25:09 neilb Exp $
+# $Id: Makefile.PL,v 1.8 2001/04/25 10:12:42 neilb Exp $
 #
 
 use ExtUtils::MakeMaker;
@@ -30,7 +30,7 @@ EOF
                                 },
 		EXE_FILES	=> [qw(dict tkdict)],
 		AUTHOR		=> 'Neil Bowers <neilb@cre.canon.co.uk>',
-		ABSTRACT_FROM	=> 'lib/Net/Dict.pm',
+		ABSTRACT_FROM	=> 'lib/Net/Dict.pod',
                 dist		=> {COMPRESS => 'gzip', SUFFIX => 'gz'},
               );
 

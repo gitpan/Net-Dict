@@ -1,6 +1,13 @@
 
 		ChangeLog for Net-Dict distribution
 
+2.05 2001-04-25 neilb
+
+	* moved the inline documentation to a separate file Dict.pod
+	* added examples/portuguese.pl which illustrates accessing
+	  an english-portuguese dictionary.
+	  Example from Jose Joao Dias de Almeida <jj@di.uminho.pt>.
+
 2.04 2001-04-23 neilb
 
 	* tidied up the code for auth(), removing debugging statements, etc.
