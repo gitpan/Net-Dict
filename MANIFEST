@@ -13,3 +13,4 @@ t/database.t
 t/define.t
 t/match.t
 t/auth.test
+META.yml                                 Module meta-data (added by MakeMaker)

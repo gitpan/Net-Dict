@@ -1,6 +1,10 @@
 
 		ChangeLog for Net-Dict distribution
 
+2.08 2011-08-02 neilb
+    * updated testsuite to refer to dict.org, as test.dict.org no longer exists
+    * updated testsuite to reflect the much greater list of databases now hosted on dict.org
+
 2.07 2003-05-06 neilb
 
 	* updated testsuite to refer to test.dict.org,

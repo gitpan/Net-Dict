@@ -198,6 +198,8 @@ if (!$@
 }
 else
 {
+    print STDERR "\nTEST 9\nexpected \"", $TESTDATA{'*-prefix-blue_screen'},
+                 "\", got \n\"$string\"\n";
     print "not ok 9\n";
 }
 
@@ -238,6 +240,8 @@ if (!$@
 }
 else
 {
+    print STDERR "\nTEST 11\nexpected \"", $TESTDATA{'foldoc-prefix-blue_'},
+                 "\", got \n\"$string\"\n";
     print "not ok 11\n";
 }
 
@@ -351,14 +355,15 @@ sub _format_matches
 
 __DATA__
 ==== strats ====
-exact:Match words exactly
-lev:Match words within Levenshtein distance one
+exact:Match headwords exactly
+lev:Match headwords within Levenshtein distance one
 prefix:Match prefixes
 re:POSIX 1003.2 (modern) regular expressions
 regexp:Old (basic) regular expressions
 soundex:Match using SOUNDEX algorithm
-substring:Match substring occurring anywhere in word
+substring:Match substring occurring anywhere in a headword
 suffix:Match suffixes
+word:Match separate words within headwords
 ==== *-exact-blue ====
 easton:Blue
 foldoc:Blue
@@ -367,8 +372,8 @@ web1913:Blue
 web1913:blue
 wn:blue
 ==== *-prefix-blue_screen ====
-foldoc:Blue Screen of Death
-foldoc:Blue Screen of Life
+foldoc:blue screen of death
+foldoc:blue screen of life
 jargon:Blue Screen of Death
 ==== jargon-prefix-blue_ ====
 jargon:Blue Book
@@ -378,35 +383,44 @@ jargon:blue goo
 jargon:Blue Screen of Death
 jargon:blue wire
 ==== foldoc-prefix-blue_ ====
-foldoc:Blue Book
-foldoc:Blue Box
-foldoc:Blue Glue
-foldoc:Blue Screen of Death
-foldoc:Blue Screen of Life
-foldoc:Blue Sky Software
+foldoc:blue book
+foldoc:blue box
+foldoc:blue dot syndrome
+foldoc:blue glue
+foldoc:blue screen of death
+foldoc:blue screen of life
+foldoc:blue sky software
 foldoc:blue wire
 ==== world95-re-' ====
 world95:Cote D'ivoire
 ==== *-suffix-standard ====
-foldoc:A Tools Integration Standard
-foldoc:Advanced Encryption Standard
-foldoc:American National Standard
-foldoc:Binary Compatibility Standard
-foldoc:Data Encryption Standard
+bouvier:STANDARD
+foldoc:a tools integration standard
+foldoc:advanced encryption standard
+foldoc:american national standard
+foldoc:binary compatibility standard
+foldoc:data encryption standard
 foldoc:de facto standard
-foldoc:Digital Signature Standard
+foldoc:digital signature standard
 foldoc:display standard
-foldoc:Filesystem Hierarchy Standard
-foldoc:IEEE Floating Point Standard
-foldoc:International Standard
-foldoc:Object Compatibility Standard
-foldoc:Recommended Standard
+foldoc:filesystem hierarchy standard
+foldoc:ieee floating point standard
+foldoc:international standard
+foldoc:object compatibility standard
+foldoc:recommended standard
 foldoc:standard
+gaz-place:Standard
 gazetteer:Standard
+gcide:deficient inferior substandard
+gcide:Double standard
+gcide:double standard
+gcide:non-standard
+gcide:nonstandard
+gcide:standard
+gcide:Standard
 jargon:ANSI standard
-web1913:Double standard
-web1913:standard
-web1913:Standard
+moby-thes:standard
+wn:accounting standard
 wn:double standard
 wn:gold standard
 wn:monetary standard
@@ -414,38 +428,6 @@ wn:nonstandard
 wn:silver standard
 wn:standard
 wn:substandard
-==== *-soundex-foobar ====
-foldoc:feeper
-foldoc:foobar
-foldoc:FUBAR
-gazetteer:Faber
-gazetteer:Fibre
-jargon:feeper
-jargon:foobar
-jargon:FUBAR
-vera:FOOBAR
-vera:FUBAR
-web1913:Favor
-web1913:Feaberry
-web1913:Feoffer
-web1913:Feofor
-web1913:fever
-web1913:Fever
-web1913:Fevery
-web1913:Fibber
-web1913:Fiber
-web1913:fibre
-web1913:Fibre
-web1913:Fifer
-web1913:Foppery
-web1913:Fubbery
-wn:favor
-wn:favour
-wn:fever
-wn:fibber
-wn:fiber
-wn:fibre
-wn:fiver
 ==== web1913-re-dotmatch ====
 web1913:a lie or an assertion
 web1913:Abraxas grossulariata
@@ -497,25 +479,31 @@ web1913:Atherosperma moschata
 ==== *-lev-know ====
 easton:Knop
 easton:Snow
+gaz-county:Knox
+gaz-place:Knox
 gazetteer:Knox
 gazetteer:Snow
-vera:NOW
-web1913:Enow
-web1913:Gnow
-web1913:Knaw
-web1913:Knew
-web1913:Knob
-web1913:Knop
-web1913:Knor
-web1913:Knot
-web1913:Know
-web1913:Known
-web1913:Now
-web1913:Snow
-web1913:Ynow
+gcide:Aknow
+gcide:Enow
+gcide:Gnow
+gcide:Knaw
+gcide:Knew
+gcide:Knob
+gcide:Knop
+gcide:Knor
+gcide:knot
+gcide:Known
+gcide:Now
+gcide:Snow
+gcide:Ynow
+moby-thes:knob
+moby-thes:knot
+moby-thes:now
+moby-thes:snow
+vera:now
+wn:knew
 wn:knob
 wn:knot
-wn:know
 wn:known
 wn:Knox
 wn:now

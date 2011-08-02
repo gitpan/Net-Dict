@@ -6,7 +6,7 @@
 
 use ExtUtils::MakeMaker;
 
-my $DEFAULT_HOST = 'test.dict.org';
+my $DEFAULT_HOST = 'dict.org';
 my $DEFAULT_PORT = 2628;
 
 $test_config_file = 't/test_host.cfg';

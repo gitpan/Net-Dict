@@ -1,10 +1,15 @@
 
 				Net::Dict
-				  v2.07
+				  v2.08
 
 This distribution contains the Net::Dict module for Perl.
 Net::Dict is a class implementing a simple client API
 for the DICT protocol defined in RFC2229.
+
+This release is the first for a number of years. The main purpose of this
+release is to get the testsuite passing: the testsuite refers to a live DICT
+server, and the number of dictionaries has grown since I last released the module
+and the dedicated test server is no longer provided.
 
 To install this module, you should just have to run the following:
 
