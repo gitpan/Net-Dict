@@ -109,6 +109,7 @@ if (!$@
     && do {
         foreach my $entry (sort {$a->[0] cmp $b->[0]} @{ $defref })
         {
+            $entry->[1] =~ s/\r//sg;
             $string .= $entry->[0]."\n";
             $string .= $entry->[1];
         }
@@ -153,6 +154,7 @@ if (!$@
     && do {
         foreach my $entry (sort {$a->[0] cmp $b->[0]} @{ $defref })
         {
+            $entry->[1] =~ s/\r//sg;
             $string .= $entry->[0]."\n";
             $string .= $entry->[1];
         }
@@ -439,9 +441,9 @@ Biscuit \Bis"cuit\, n. [F. biscuit (cf. It. biscotto, Sp.
       [1913 Webster]
 wn
 biscuit
-     n 1: small round bread leavened with baking-powder or soda
-     2: any of various small flat sweet cakes (`biscuit' is the
-        British term) [syn: {cookie}, {cooky}]
+    n 1: small round bread leavened with baking-powder or soda
+    2: any of various small flat sweet cakes (`biscuit' is the
+       British term) [syn: {cookie}, {cooky}, {biscuit}]
 ==== !-biscuit ====
 gcide
 Biscuit \Bis"cuit\, n. [F. biscuit (cf. It. biscotto, Sp.
@@ -478,8 +480,9 @@ Biscuit \Bis"cuit\, n. [F. biscuit (cf. It. biscotto, Sp.
 ==== *-antispasmodic_agent ====
 wn
 antispasmodic agent
-     n : a drug used to relieve or prevent spasms (especially of the
-         smooth muscles) [syn: {antispasmodic}, {spasmolytic}]
+    n 1: a drug used to relieve or prevent spasms (especially of the
+         smooth muscles) [syn: {antispasmodic}, {spasmolytic},
+         {antispasmodic agent}]
 ==== *-oboe_damore ====
 gcide
 Oboe \O"boe\, n. [It., fr. F. hautbois. See {Hautboy}.] (Mus.)
@@ -496,7 +499,7 @@ Oboe \O"boe\, n. [It., fr. F. hautbois. See {Hautboy}.] (Mus.)
       [1913 Webster]
 wn
 oboe d'amore
-     n : a oboe pitched a minor third lower than the ordinary oboe;
+    n 1: an oboe pitched a minor third lower than the ordinary oboe;
          used to perform baroque music
 ==== *-kod ====
 gcide
@@ -514,22 +517,20 @@ KO'd \KO'd\ adj. [from {KO}, v. t.]
         [WordNet 1.5]
 wn
 KO'd
-     adj : knocked unconscious by a heavy blow [syn: {knocked out(p)},
-           {kayoed}, {out(p)}, {stunned}]
-wn
-ko'd
-     See {ko}
+    adj 1: knocked unconscious by a heavy blow [syn: {knocked
+           out(p)}, {kayoed}, {KO'd}, {out(p)}, {stunned}]
 ==== *-pityrogramma_calomelanos_aureoflava ====
 wn
 Pityrogramma calomelanos aureoflava
-     n : tropical American fern having fronds with light golden
-         undersides [syn: {golden fern}]
+    n 1: tropical American fern having fronds with light golden
+         undersides [syn: {golden fern}, {Pityrogramma calomelanos
+         aureoflava}]
 ==== wn-banana ====
 wn
 banana
-     n 1: any of several tropical and subtropical treelike herbs of
-          the genus Musa having a terminal crown of large entire
-          leaves and usually bearing hanging clusters of elongated
-          fruits [syn: {banana tree}]
-     2: elongated crescent-shaped yellow fruit with soft sweet flesh
+    n 1: any of several tropical and subtropical treelike herbs of
+         the genus Musa having a terminal crown of large entire
+         leaves and usually bearing hanging clusters of elongated
+         fruits [syn: {banana}, {banana tree}]
+    2: elongated crescent-shaped yellow fruit with soft sweet flesh
 ==== END ====

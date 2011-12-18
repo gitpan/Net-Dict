@@ -287,7 +287,7 @@ else
 # of a given length
 #-----------------------------------------------------------------------
 eval { $defref = $dict->match('^a....................$',
-                              're', 'web1913'); };
+                              're', 'wn'); };
 if (!$@
     && defined $defref
     && do { $string = _format_matches($defref); }
@@ -356,7 +356,10 @@ sub _format_matches
 __DATA__
 ==== strats ====
 exact:Match headwords exactly
+first:Match the first word within headwords
+last:Match the last word within headwords
 lev:Match headwords within Levenshtein distance one
+nprefix:Match prefixes (skip, count)
 prefix:Match prefixes
 re:POSIX 1003.2 (modern) regular expressions
 regexp:Old (basic) regular expressions
@@ -374,13 +377,12 @@ wn:blue
 ==== *-prefix-blue_screen ====
 foldoc:blue screen of death
 foldoc:blue screen of life
-jargon:Blue Screen of Death
+jargon:blue screen of death
 ==== jargon-prefix-blue_ ====
-jargon:Blue Book
 jargon:blue box
-jargon:Blue Glue
+jargon:blue glue
 jargon:blue goo
-jargon:Blue Screen of Death
+jargon:blue screen of death
 jargon:blue wire
 ==== foldoc-prefix-blue_ ====
 foldoc:blue book
@@ -408,9 +410,9 @@ foldoc:ieee floating point standard
 foldoc:international standard
 foldoc:object compatibility standard
 foldoc:recommended standard
+foldoc:robot exclusion standard
 foldoc:standard
-gaz-place:Standard
-gazetteer:Standard
+gaz2k-places:Standard
 gcide:deficient inferior substandard
 gcide:Double standard
 gcide:double standard
@@ -418,71 +420,160 @@ gcide:non-standard
 gcide:nonstandard
 gcide:standard
 gcide:Standard
-jargon:ANSI standard
+jargon:ansi standard
 moby-thes:standard
 wn:accounting standard
 wn:double standard
 wn:gold standard
 wn:monetary standard
 wn:nonstandard
+wn:procrustean standard
 wn:silver standard
 wn:standard
 wn:substandard
 ==== web1913-re-dotmatch ====
-web1913:a lie or an assertion
-web1913:Abraxas grossulariata
-web1913:Acanthopis antarctica
-web1913:Accentor rubeculoides
-web1913:Acceptance of persons
-web1913:acid sodium carbonate
-web1913:Adhesive inflammation
-web1913:Adventitious membrane
-web1913:AEgeria polistiformis
-web1913:AEgopodium podagraria
-web1913:AEgopodium Podagraria
-web1913:African calabash tree
-web1913:After one's own heart
-web1913:Agapanthus umbellatus
-web1913:Agrostis Spica-ventis
-web1913:also its milky juice 
-web1913:Altitude of a pyramid
-web1913:Ambloplites rupestris
-web1913:Ambrosia artemisiaege
-web1913:Ammodytes lanceolatus
-web1913:Ammophila arundinacea
-web1913:Amphicerus bicaudatus
-web1913:Amphioxus lanceolatus
-web1913:Anacampsis sarcitella
-web1913:Anallagmatic surfaces
-web1913:Anarhynchus frontalis
-web1913:Andropogon Halepensis
-web1913:Anemopsis Californica
-web1913:Angelica archangelica
-web1913:Anisopteryx pometaria
-web1913:Anseranas semipalmata
-web1913:Anthistiria australis
-web1913:Anthoxanthum odoratum
-web1913:Anthriscus cerefolium
-web1913:Anthyllis Barba-Jovis
-web1913:Antilocapra Americana
-web1913:Antrostomus vociferus
-web1913:Aphenogaster structor
-web1913:Aphrophora interrupta
-web1913:Aplodinotus grunniens
-web1913:Arbitrary coefficient
-web1913:Argillaceous iron ore
-web1913:As good as one's word
-web1913:Asclepias Curassavica
-web1913:Asparagus officinalis
-web1913:Aspidosperma excelsum
-web1913:Atherosperma moschata
+wn:aaron montgomery ward
+wn:abelmoschus moschatus
+wn:aboriginal australian
+wn:abruptly-pinnate leaf
+wn:absence without leave
+wn:acacia auriculiformis
+wn:acid-base equilibrium
+wn:acquisition agreement
+wn:acute-angled triangle
+wn:adams-stokes syndrome
+wn:adenosine diphosphate
+wn:adlai ewing stevenson
+wn:advance death benefit
+wn:aeronautical engineer
+wn:affine transformation
+wn:africanized honey bee
+wn:ageratum houstonianum
+wn:aglaomorpha meyeniana
+wn:agnes george de mille
+wn:agnes gonxha bojaxhiu
+wn:agricultural labourer
+wn:agriculture secretary
+wn:agrippina the younger
+wn:agropyron intermedium
+wn:agropyron pauciflorum
+wn:agropyron subsecundum
+wn:air-to-ground missile
+wn:airborne transmission
+wn:aksa martyrs brigades
+wn:albatrellus dispansus
+wn:alben william barkley
+wn:aldous leonard huxley
+wn:aldrovanda vesiculosa
+wn:alex boncayao brigade
+wn:alexander archipelago
+wn:alexander graham bell
+wn:alexis de tocqueville
+wn:alfred alistair cooke
+wn:alfred bernhard nobel
+wn:alfred charles kinsey
+wn:alfred edward housman
+wn:alfred lothar wegener
+wn:alfred russel wallace
+wn:alkylbenzenesulfonate
+wn:allied command europe
+wn:allium cepa viviparum
+wn:amaranthus graecizans
+wn:ambloplites rupestris
+wn:ambrosia psilostachya
+wn:ambystomid salamander
+wn:amelanchier alnifolia
+wn:american bog asphodel
+wn:american mountain ash
+wn:american parsley fern
+wn:american pasqueflower
+wn:american red squirrel
+wn:american saddle horse
+wn:amphitheatrum flavium
+wn:amsinckia grandiflora
+wn:andrew william mellon
+wn:andropogon virginicus
+wn:anemopsis californica
+wn:angelica archangelica
+wn:angolan monetary unit
+wn:anogramma leptophylla
+wn:anointing of the sick
+wn:anterior crural nerve
+wn:anterior jugular vein
+wn:anterior labial veins
+wn:anthriscus sylvestris
+wn:anthyllis barba-jovis
+wn:anti-racketeering law
+wn:anti-submarine rocket
+wn:anti-takeover defense
+wn:antiballistic missile
+wn:antigenic determinant
+wn:antihemophilic factor
+wn:antihypertensive drug
+wn:antilocapra americana
+wn:antiophthalmic factor
+wn:antitrust legislation
+wn:anton van leeuwenhoek
+wn:antonio lucio vivaldi
+wn:antonius stradivarius
+wn:apalachicola rosemary
+wn:apex of the sun's way
+wn:aposematic coloration
+wn:appalachian mountains
+wn:appendicular skeleton
+wn:arceuthobium pusillum
+wn:archeological remains
+wn:archimedes' principle
+wn:arctostaphylos alpina
+wn:ardisia escallonoides
+wn:arenaria groenlandica
+wn:ariocarpus fissuratus
+wn:army of the righteous
+wn:arna wendell bontemps
+wn:arnold joseph toynbee
+wn:arrhenatherum elatius
+wn:artemisia californica
+wn:artemisia dracunculus
+wn:artemisia gnaphalodes
+wn:artemisia ludoviciana
+wn:artemisia stelleriana
+wn:artemision at ephesus
+wn:arteria intercostalis
+wn:arterial blood vessel
+wn:arthur edwin kennelly
+wn:articles of agreement
+wn:as luck would have it
+wn:asarum shuttleworthii
+wn:ascension of the lord
+wn:asclepias curassavica
+wn:asparagus officinales
+wn:aspergillus fumigatus
+wn:asplenium platyneuron
+wn:asplenium trichomanes
+wn:astreus hygrometricus
+wn:astrophyton muricatum
+wn:athyrium filix-femina
+wn:atmospheric condition
+wn:atrioventricular node
+wn:august von wassermann
+wn:augustin jean fresnel
+wn:australian blacksnake
+wn:australian bonytongue
+wn:australian grass tree
+wn:australian reed grass
+wn:australian sword lily
+wn:australian turtledove
+wn:austronesian language
+wn:automotive technology
+wn:aversive conditioning
+wn:avicennia officinalis
+wn:avogadro's hypothesis
+wn:azerbajdzhan republic
 ==== *-lev-know ====
 easton:Knop
 easton:Snow
-gaz-county:Knox
-gaz-place:Knox
-gazetteer:Knox
-gazetteer:Snow
+gaz2k-counties:Knox
+gaz2k-places:Knox
 gcide:Aknow
 gcide:Enow
 gcide:Gnow
@@ -501,11 +592,10 @@ moby-thes:knot
 moby-thes:now
 moby-thes:snow
 vera:now
-wn:knew
 wn:knob
 wn:knot
 wn:known
-wn:Knox
+wn:knox
 wn:now
 wn:snow
 ==== END ====

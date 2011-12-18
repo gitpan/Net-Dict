@@ -22,7 +22,7 @@ EOF
 &WriteMakefile(
                 NAME		=> 'Net::Dict',
                 DISTNAME	=> 'Net-Dict',
-		VERSION_FROM	=> 'lib/Net/Dict.pm',
+            VERSION_FROM	=> 'lib/Net/Dict.pm',
                 PREREQ_PM	=> {
                                  'IO::Socket'	=> 0,
                                  'Net::Cmd'	=> 0,
