@@ -1,6 +1,12 @@
 
 		ChangeLog for Net-Dict distribution
 
+2.10 2013-07-20
+
+    - Reformatted this file according to CPAN::Changes::Spec
+    - Repository details added to metadata (Makefile.PL) and pod
+    - License type added to metadata (Makefile.PL)
+
 2.09 2011-12-18
 
     - Fixed tests that started breaking due to changes in the dict.org server
@@ -152,7 +158,7 @@
 	  Similarly every word returned by match() was quoted.
 	  Now the quotation marks are removed.
 
-1.05
+1.05 2001-03-01
 	- added "dict", a sample client script
 	- strats() method was including a newline in the description
 	  of each strategy, unlike dbs(), which chomp()s the description.
@@ -160,18 +166,13 @@
 	- added Client option to Net::Dict, for CLIENT identifier string
 	- added AUTHOR and ABSTRACT_FROM keys to Makefile.PL
 
-1.04
+1.04 2001-02-22
 
-	First version under maintenance of Neil Bowers
-
-	Added Makefile.PL, README, MANIFEST.
-
-	Added examples/simple.pl, based on example submitted
-	by Jose Joao Dias de Almeida <jj@di.uminho.pt>
-
-	Modified in constructor for default port number,
-	also from Jose.
-
-1.03 - 1.01
-
-	Versions released by Dmitry Rubinstein <dimrub@wisdom.weizmann.ac.il>
+    - First version under maintenance of Neil Bowers
+    - Added Makefile.PL, README, MANIFEST.
+    - Added examples/simple.pl, based on example submitted
+      by Jose Joao Dias de Almeida <jj@di.uminho.pt>
+    - Modified in constructor for default port number,
+      also from Jose.
+    - previous versions released by Dmitry Rubinstein
+      <dimrub@wisdom.weizmann.ac.il>
