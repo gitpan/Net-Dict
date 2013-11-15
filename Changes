@@ -1,6 +1,10 @@
 
 		ChangeLog for Net-Dict distribution
 
+2.11 2013-11-15
+
+    - Added missing dependency (AppConfig::Std) to Makefile.PL
+
 2.10 2013-07-20
 
     - Reformatted this file according to CPAN::Changes::Spec

@@ -4,7 +4,7 @@
       "Neil Bowers <neil@bowers.com>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "ExtUtils::MakeMaker version 6.68, CPAN::Meta::Converter version 2.131560",
+   "generated_by" : "ExtUtils::MakeMaker version 6.82, CPAN::Meta::Converter version 2.132830",
    "license" : [
       "perl_5"
    ],
@@ -34,7 +34,8 @@
          "requires" : {
             "Carp" : "0",
             "IO::Socket" : "0",
-            "Net::Cmd" : "0"
+            "Net::Cmd" : "0",
+            "Net::Dict" : "0"
          }
       }
    },
@@ -44,5 +45,5 @@
          "url" : "https://github.com/neilbowers/Net-Dict"
       }
    },
-   "version" : "2.10"
+   "version" : "2.11"
 }
