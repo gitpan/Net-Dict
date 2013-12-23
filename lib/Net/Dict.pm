@@ -11,13 +11,14 @@
 
 package Net::Dict;
 
+use warnings;
 use strict;
 use IO::Socket;
 use Net::Cmd;
 use Carp;
 
 use vars qw(@ISA $debug);
-our $VERSION = '2.12';
+our $VERSION = '2.13';
 
 #-----------------------------------------------------------------------
 # Default values for arguments to new(). We also use this to

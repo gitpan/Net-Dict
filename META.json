@@ -35,7 +35,8 @@
             "AppConfig::Std" : "0",
             "Carp" : "0",
             "IO::Socket" : "0",
-            "Net::Cmd" : "0"
+            "Net::Cmd" : "0",
+            "perl" : "5.006"
          }
       }
    },
@@ -45,5 +46,5 @@
          "url" : "https://github.com/neilbowers/Net-Dict"
       }
    },
-   "version" : "2.12"
+   "version" : "2.13"
 }
