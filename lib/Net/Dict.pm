@@ -18,7 +18,7 @@ use Net::Cmd;
 use Carp;
 
 use vars qw(@ISA $debug);
-our $VERSION = '2.13';
+our $VERSION = '2.14';
 
 #-----------------------------------------------------------------------
 # Default values for arguments to new(). We also use this to
@@ -221,7 +221,7 @@ sub define
         my ($defNum) = ($self->message =~ /^\d{3} (\d+) /);
         foreach (0..$defNum-1)
         {
-            my ($d) = ($self->getline =~ /^\d{3} ".*" (\w+) /);
+            my ($d) = ($self->getline =~ /^\d{3} ".*" ([-\w]+) /);
             my ($def) = join '', @{$self->read_until_dot};
             push @defs, [$d, $def];
         }
