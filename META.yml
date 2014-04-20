@@ -4,6 +4,7 @@ author:
   - 'Neil Bowers <neil@bowers.com>'
 build_requires:
   ExtUtils::MakeMaker: 0
+  Test::More: 0.88
 configure_requires:
   ExtUtils::MakeMaker: 0
 dynamic_config: 1
@@ -17,6 +18,8 @@ no_index:
   directory:
     - t
     - inc
+  package:
+    - Net::Dict::TestConfig
 requires:
   AppConfig::Std: 0
   Carp: 0
@@ -25,4 +28,4 @@ requires:
   perl: 5.006
 resources:
   repository: https://github.com/neilbowers/Net-Dict
-version: 2.15
+version: 2.16

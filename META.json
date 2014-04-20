@@ -17,12 +17,16 @@
       "directory" : [
          "t",
          "inc"
+      ],
+      "package" : [
+         "Net::Dict::TestConfig"
       ]
    },
    "prereqs" : {
       "build" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "0"
+            "ExtUtils::MakeMaker" : "0",
+            "Test::More" : "0.88"
          }
       },
       "configure" : {
@@ -46,5 +50,5 @@
          "url" : "https://github.com/neilbowers/Net-Dict"
       }
    },
-   "version" : "2.15"
+   "version" : "2.16"
 }
