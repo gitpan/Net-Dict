@@ -28,4 +28,4 @@ requires:
   perl: 5.006
 resources:
   repository: https://github.com/neilbowers/Net-Dict
-version: 2.16
+version: 2.17
