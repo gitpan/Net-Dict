@@ -3,16 +3,17 @@ abstract: 'client API for accessing dictionary servers (RFC 2229)'
 author:
   - 'Neil Bowers <neil@bowers.com>'
 build_requires:
-  ExtUtils::MakeMaker: 0
-  Test::More: 0.88
+  ExtUtils::MakeMaker: '0'
+  Test::Differences: '0.62'
+  Test::More: '0.88'
 configure_requires:
-  ExtUtils::MakeMaker: 0
+  ExtUtils::MakeMaker: '0'
 dynamic_config: 1
-generated_by: 'ExtUtils::MakeMaker version 6.94, CPAN::Meta::Converter version 2.133380'
+generated_by: 'ExtUtils::MakeMaker version 6.98, CPAN::Meta::Converter version 2.141170'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  version: '1.4'
 name: Net-Dict
 no_index:
   directory:
@@ -21,11 +22,11 @@ no_index:
   package:
     - Net::Dict::TestConfig
 requires:
-  AppConfig::Std: 0
-  Carp: 0
-  IO::Socket: 0
-  Net::Cmd: 0
-  perl: 5.006
+  AppConfig::Std: '0'
+  Carp: '0'
+  IO::Socket: '0'
+  Net::Cmd: '0'
+  perl: '5.006'
 resources:
   repository: https://github.com/neilbowers/Net-Dict
-version: 2.17
+version: '2.18'
